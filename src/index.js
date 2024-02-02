@@ -7,18 +7,18 @@ connectDB();
 // const { connectDB } = require("./utils/db");
 // connectDB();
 
-const Character = require('./api/models/Character');
-const characterRoutes = require('./api/routes/character.routes')
+const characterRoutes = require('./api/routes/character.routes');
+const locationRoutes = require('./api/routes/location.routes');
 
 const server = express(); // lo ejecutamos y guardamos en la variable app
 const PORT = 3000;
-const router = express.Router();
 
 // Estas son funciones propias de express que transforman la información enviada como JSON al servidor de forma que podremos obtenerla en req.body.
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
 
 server.use('/characters', characterRoutes);
+server.use('/locations', locationRoutes);
 // server.use('/', router) // .use utiliza archivos o datos para rutas existentes o no ("*")
 
 server.use("*", (req, res, next) => {
